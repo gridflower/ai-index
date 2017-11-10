@@ -1,0 +1,118 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var ai = {
+  x: [1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [1, 1.237244898, 1.287755102, 1.348469388, 1.221428571, 1.705102041, 1.981122449, 2.397959184, 2.739285714, 2.704591837, 3.395918367, 4.216836735, 5.524489796, 5.31122449, 5.489795918, 6.332653061, 6.970918367, 6.519897959, 7.855612245, 9.41377551, 9.52244898],
+  type: 'scatter',
+  name: "AI",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#6AC7F5',
+    width: 3
+  }
+};
+
+var cs = {
+  x: [1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [1, 1.138075528, 1.147886964, 1.051305636, 1.250123495, 1.614049432, 1.750438619, 2.017255183, 1.847565026, 2.44078219, 3.06942954, 3.693614049, 4.436114944, 5.129609757, 5.340913349, 5.379460712, 5.395506498, 5.336569745, 5.421534059, 5.650178003, 6.022757082],
+  type: "scatter",
+  name: "CS",
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d26a69',
+    width: 3
+  }
+};
+
+var scopus = {
+  x: [1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [1, 1.024275719, 1.029228491, 1.035132088, 1.099158181, 1.190061175, 1.246332113, 1.310328493, 1.410946868, 1.607285178, 1.690935594, 1.793318086, 1.87711622, 1.970674728, 2.084335519, 2.215586548, 2.321394553, 2.405020349, 2.459733464, 2.416144138, 2.42991665],
+  type: "scatter",
+  name: "Scopus",
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#ec9832',
+    width: 3
+  } 
+};
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+};
+var data = [ai, cs, scopus];
+var layout = {
+  width: 500,
+  height: 350,
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Proxima Nova, monospace',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>Relative Paper Growth</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Year</b>',
+    titlefont: {
+      size: 18,
+    },
+    // tick0: 1996,
+    range: ["1996", "2017"],
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject({
+    title: '<b>Growth</b>',
+    range: [0, 10],
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
+    // tickcolor: 'rgb(248, 248, 248)'
+  },gridline_settings),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+</script>
+</body>

@@ -1,0 +1,108 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var squad = {
+  x: ["2016-08-27","2016-08-27","2016-09-28","2016-10-26","2016-10-26","2016-11-01","2016-11-01","2016-11-02","2016-11-28","2016-12-28","2016-12-28","2017-01-24","2017-02-05","2017-02-19","2017-02-22","2017-03-08","2017-03-09","2017-03-14","2017-03-24","2017-04-02","2017-04-12","2017-04-12","2017-04-12","2017-04-13","2017-04-14","2017-04-22","2017-05-01","2017-05-13","2017-05-21","2017-06-25","2017-07-06","2017-07-10","2017-07-14","2017-07-14","2017-07-14","2017-07-14","2017-07-25","2017-07-25","2017-07-29","2017-07-29","2017-08-18","2017-08-21","2017-08-21","2017-08-30","2017-09-08","2017-09-08","2017-09-19","2017-09-19","2017-09-20","2017-09-21","2017-09-21","2017-09-21","2017-10-12","2017-10-13","2017-10-18","2017-10-22","2017-10-22","2017-10-22","2017-10-22","2017-10-23","2017-10-24","2017-10-27"],
+  y: [.6047,.6047,.6250,.6790,.6790,.7163,.7163,.7163,.7163,.7163,.7163,.7377,.7377,.7377,.7377,.7377,.7503,.7503,.7503,.7503,.7503,.7503,.7503,.7503,.7503,.7503,.7503,.7503,.7537,.7537,.7537,.7537,.7599,.7599,.7599,.7599,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7785,.7893,.7893,.7893,.7893,.7893,.7893,.7893,.7893,.7898,.7898],
+  type: 'scatter',
+  name: "Best AI System",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#6AC7F5',
+    width: 3
+  }
+};
+
+var human = {
+  x: ["2016-08-1", "2017-11-1"],
+  y: [.8230, .8230],
+  type: "scatter",
+  name: "Human Performance",
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d26a69',
+    width: 3
+  }
+}
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+}
+var data = [human, squad];
+var layout = {
+  width: 500,
+  height: 350,
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Proxima Nova, monospace',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>Question Answering, SQuAD 1.1</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Date</b>',
+    titlefont: {
+      size: 18,
+    },
+    type: "date",
+    range: ["2016-08-1", "2017-11-1"],
+    tick0: "2016-08-1",
+    dtick: "M4",
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject({
+    title: '<b>Accuracy</b>',
+    range: [.5, .9],
+    tickformat: ',.0%',
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc'
+    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
+    // tickcolor: 'rgb(248, 248, 248)'
+  },gridline_settings),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+</script>
+</body>

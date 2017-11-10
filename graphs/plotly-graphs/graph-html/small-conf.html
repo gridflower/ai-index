@@ -1,0 +1,186 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+// CP: [130, 132, 135, 138, 140, 209, 207, 206, 205, 237, 257, 173, 135, 187, 132, 166, 155, 192, 212, 141, 246]
+// ICAPS: [180, 143, 198, 170, 212, 140, 228, 206, 225, 133, 214, 222, 160, 226]
+// UAI: [151, 160, 170, 180, 190, 200, 210, 214, 210, 200, 190, 180, 170, 160, 150, 229, 195, 164, 192, 228, 225, 186, 221, 211]
+// KR: [137, 137, 137, 144, 152, 149, 146, 148, 150, 135, 120, 130, 140, 157, 175, 182, 190, 180, 171, 164, 157]
+
+var AAMAS = {
+  x: [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [614, 383, 655, 681, 469, 441, 639, 608, 593, 450, 577, 552, 798, 424, 461],
+  type: 'scatter',
+  name: "AAMAS",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#6AC7F5',
+    width: 3
+  }
+};
+
+var ICLR = {
+  x: [2014, 2015, 2016],
+  y: [105, 176, 369],
+
+  type: 'scatter',
+  name: "ICLR",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d26a69',
+    width: 3
+  }
+};
+
+var CP = {
+  x: [1996, 2000, 2001, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [130, 140, 209, 205, 237, 257, 173, 135, 187, 132, 166, 155, 192, 212, 141, 246],
+  type: 'scatter',
+  name: "CP",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#ec9832',
+    width: 3
+  }
+};
+
+var KR = {
+  x: [1996, 1998, 2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016],
+  y: [137, 137, 152, 146, 150, 120, 140, 175, 190, 171, 157],
+  type: 'scatter',
+  name: "KR",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: 'rgb(151, 129, 225)',
+    width: 3
+  }
+};
+
+var UAI = {
+  x: [1993, 2000, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [151, 214, 150, 230, 195, 164, 192, 228, 225, 186, 221, 211],
+  type: 'scatter',
+  name: "UAI",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#2e9b3f',
+    // color: 'rgb(0, 0, 0)',
+    width: 3
+  }
+};
+
+var ICAPS = {
+  x: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [180, 143, 198, 170, 212, 140, 228, 206, 225, 133, 214, 222, 160, 226],
+  type: 'scatter',
+  name: "ICAPS",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: 'rgb(0, 0, 0)',
+    width: 3
+  }
+}
+
+var ACL = {
+  x: [2000, 2001, 2002, 2003, 2004, 2005, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [450, 573, 676, 574, 682, 696, 1075, 759, 799, 955, 1101, 973, 987, 1437, 745, 1649],
+  type: 'scatter',
+  name: "ACL",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: 'rgb(125, 125, 125)',
+    width: 3
+  }
+}
+
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+    zeroline: true,
+    zerolinecolor: '#dcdddc',
+    zerolinewidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+};
+
+var data = [AAMAS, ICLR, CP, KR, UAI, ICAPS];
+var layout = {
+  width: 500,
+  height: 350,
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Proxima Nova, monospace',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>Small Conference Attendance</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Year</b>',
+    titlefont: {
+      size: 18,
+    },
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject({
+    title: '<b>Attendance</b>',
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
+    // tickcolor: 'rgb(248, 248, 248)'
+  },gridline_settings),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+</script>
+</body>

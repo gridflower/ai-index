@@ -1,0 +1,105 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var POS = {
+  x: ['2013-01-01', '2013-02-01', '2013-03-01', '2013-04-01', '2013-05-01', '2013-06-01', '2013-07-01', '2013-08-01', '2013-09-01', '2013-10-01', '2013-11-01', '2013-12-01', '2014-01-01', '2014-02-01', '2014-03-01', '2014-04-01', '2014-05-01', '2014-06-01', '2014-07-01', '2014-08-01', '2014-09-01', '2014-10-01', '2014-11-01', '2014-12-01', '2015-01-01', '2015-02-01', '2015-03-01', '2015-04-01', '2015-05-01', '2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
+  y: [.13, .15, .19, .17, .17, .21, .15, .15, .17, .11, .12, .08, .08, .10, .09, .08, .13, .09, .10, .08, .09, .12, .09, .08, .09, .07, .10, .08, .09, .08, .08, .12, .11, .11, .12, .11, .12, .14, .17, .24, .29, .24, .30, .29, .29, .28, .29, .27],
+  type: 'scatter',
+  name: "Positive",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#6AC7F5',
+    width: 3
+  }
+};
+
+var NEG = {
+  x: ['2013-01-01', '2013-02-01', '2013-03-01', '2013-04-01', '2013-05-01', '2013-06-01', '2013-07-01', '2013-08-01', '2013-09-01', '2013-10-01', '2013-11-01', '2013-12-01', '2014-01-01', '2014-02-01', '2014-03-01', '2014-04-01', '2014-05-01', '2014-06-01', '2014-07-01', '2014-08-01', '2014-09-01', '2014-10-01', '2014-11-01', '2014-12-01', '2015-01-01', '2015-02-01', '2015-03-01', '2015-04-01', '2015-05-01', '2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
+  y: [0.01, 0.01, 0.02, 0.01, 0.04, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.02, 0.02, 0.01, 0.01, 0.01, 0.01, 0.04, 0.02, 0.03, 0.03, 0.02, 0.03, 0.02, 0.02, 0.02, 0.03, 0.03, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.06, 0.04, 0.04, 0.02, 0.02, 0.03, 0.02, 0.02, 0.03, 0.04],
+  type: "scatter",
+  name: "Negative",
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d26a69',
+    width: 3
+  } 
+};
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+};
+var data = [POS, NEG];
+var layout = {
+  width: 500,
+  height: 350,
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Proxima Nova, monospace',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>Media Sentiment</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Date</b>',
+    titlefont: {
+      size: 18,
+    },
+    // tick0: ,
+    // dtick: "",
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject({
+    title: '<b>Percent Articles</b>',
+    // range: [0, 10],
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
+    // tickcolor: 'rgb(248, 248, 248)'
+  },gridline_settings),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+</script>
+</body>

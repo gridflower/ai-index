@@ -1,0 +1,108 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var vqa = {
+  x: ["2015-10-27","2015-11-09","2015-11-18","2015-11-18","2015-11-22","2015-12-07","2016-01-07","2016-01-26","2016-03-04","2016-03-19","2016-04-06","2016-05-09","2016-05-31","2016-06-05","2016-06-06","2016-06-12","2016-06-20","2016-06-20","2016-10-14","2016-11-02","2016-12-16","2017-02-22","2017-04-11","2017-05-18","2017-06-20"],
+  y:  [.5406, .5510, .5510, .5736, .5736, .5736, .5800, .5890, .6040, .6040, .6040, .6040, .6210, .6210, .6650, .6650, .6650, .6650, .6689, .6689, .6689, .6689, .6689, .6736],
+  type: 'scatter',
+  name: "Best AI System",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#6AC7F5',
+    width: 3
+  }
+};
+
+var human = {
+  x: ["2015-10-01", "2017-7-1"],
+  y: [.8303, .8303],
+  type: "scatter",
+  name: "Human Performance",
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d26a69',
+    width: 3
+  }
+}
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+}
+var data = [human, vqa];
+var layout = {
+  width: 500,
+  height: 350,
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Proxima Nova, monospace',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>Visual Question Answering, VQA 1.0</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Date</b>',
+    titlefont: {
+      size: 18,
+    },
+    type: "date",
+    range: ["2015-10-01", "2017-7-1"],
+    tick0: "2015-10-01",
+    dtick: "M4",
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject({
+    title: '<b>Accuracy</b>',
+    range: [.5, .9],
+    tickformat: ',.0%',
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc'
+    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
+    // tickcolor: 'rgb(248, 248, 248)'
+  },gridline_settings),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+</script>
+</body>

@@ -1,0 +1,124 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var total = {
+  x: [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [78, 167, 239, 211, 150, 134, 59, 108, 125, 167, 189, 181, 171, 208, 208, 272, 225, 240, 359, 410, 495, 573, 760, 937, 1138, 1462, 1301],
+  type: 'scatter',
+  name: "Total",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#ec9832',
+    width: 3
+  } 
+}
+
+var ai = {
+  x: [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [58, 158, 218, 194, 141, 116, 40, 82, 97, 126, 143, 142, 103, 138, 119, 116, 88, 92, 138, 144, 177, 195, 186, 216, 375, 558, 660],
+  type: 'scatter',
+  name: "Artificial Intelligence",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#6AC7F5',
+    width: 3
+  }
+};
+
+var ml = {
+  x: [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [20, 9, 21, 17, 9, 18, 19, 26, 28, 41, 46, 39, 68, 70, 89, 156, 137, 148, 221, 266, 318, 378, 574, 721, 763, 904, 641],
+  type: 'scatter',
+  name: "Machine Learning",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d26a69',
+    width: 3
+  }
+};
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+    zeroline: true,
+    zerolinecolor: '#dcdddc',
+    zerolinewidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+};
+
+var data = [total, ai, ml];
+var layout = {
+  width: 500,
+  height: 350,
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Proxima Nova, monospace',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>AI Course Enrollment</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Year</b>',
+    titlefont: {
+      size: 18,
+    },
+    // tick0: 1996,
+    // range: ["1996", "2017"],
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject({
+    title: '<b>Students</b>',
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
+    // tickcolor: 'rgb(248, 248, 248)'
+  },gridline_settings),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+</script>
+</body>

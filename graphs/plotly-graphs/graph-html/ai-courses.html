@@ -1,0 +1,154 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var stanford = {
+  x: [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [58, 158, 218, 194, 141, 116, 40, 82, 97, 126, 143, 142, 103, 138, 119, 116, 88, 92, 138, 144, 177, 195, 186, 216, 375, 558, 660],
+  type: 'scatter',
+  name: "Stanford",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#6AC7F5',
+    width: 3
+  }
+};
+
+var UCB = {
+  x: [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [156, 238, 247, 313, 368, 440, 317, 218, 184, 230, 315, 318, 412, 487, 681, 792, 1032, 1030, 918],
+  type: 'scatter',
+  name: "Berkeley",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d26a69',
+    width: 3
+  }
+};
+
+var UIUC = {
+  x: [2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [167, 111, 111, 103, 88, 126, 160, 128, 206, 306, 313, 330, 444],
+  type: 'scatter',
+  name: "UIUC",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#ec9832',
+    width: 3
+  }
+};
+
+var GT = {
+  x: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [37, 89, 115, 149, 66, 122, 72, 96, 74, 82, 99, 121, 168, 197, 322, 397, 591],
+  type: 'scatter',
+  name: "GT",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: 'rgb(151, 129, 225)',
+    width: 3
+  }
+};
+
+var UW = {
+  x: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [113, 138, 139, 136, 178, 194, 207, 307],
+  type: 'scatter',
+  name: "UW",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#2e9b3f',
+    // color: 'rgb(0, 0, 0)',
+    width: 3
+  }
+};
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+    zeroline: true,
+    zerolinecolor: '#dcdddc',
+    zerolinewidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+};
+
+var data = [stanford, UCB, GT, UIUC, UW];
+var layout = {
+  width: 500,
+  height: 350,
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Proxima Nova, monospace',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>AI Course Enrollment</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Year</b>',
+    titlefont: {
+      size: 18,
+    },
+    // tick0: 1996,
+    // range: ["1996", "2017"],
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject({
+    title: '<b>Students</b>',
+    range: [0, 1100],
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
+    // tickcolor: 'rgb(248, 248, 248)'
+  },gridline_settings),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+</script>
+</body>

@@ -1,0 +1,181 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var AAAI = {
+  x: [1984, 1986, 1987, 1988, 1990, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2000, 2002, 2004, 2005, 2006, 2007, 2008, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [3300, 5334, 4733, 3970, 2800, 1950, 1685, 1379, 1964, 1371, 1262, 1417, 1250, 1358, 1399, 1534, 1116, 1263, 1064, 1113, 918, 1108, 934, 807, 1019, 1380, 1289],
+  type: 'scatter',
+  name: "AAAI",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#6AC7F5',
+    width: 3
+  }
+};
+
+var IJCAI = {
+  x: [1985, 1989, 1995, 1997, 1999, 2001, 2005, 2007, 2009, 2011, 2013, 2015, 2016],
+  y: [4995, 3700, 2059, 1325, 1373, 1150, 1018, 1215, 1265, 1493, 920, 1134, 1671],
+  type: 'scatter',
+  name: "IJCAI",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d26a69',
+    width: 3
+  }
+};
+
+var NIPS = {
+  x: [1995, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [500, 600, 600, 700, 750, 775, 820, 820, 970, 1100, 1200, 1300, 1625, 2581, 3852, 5226],
+  type: 'scatter',
+  name: "NIPS",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#ec9832',
+    width: 3
+  }
+};
+
+var CVPR = {
+  x: [2011, 2012, 2013, 2014, 2015, 2016],
+  // y: [1496, 1811, 1991, 2061, 2750, 3606],
+  y: [1575, 1811, 1991, 2061, 2750, 3606],
+  type: 'scatter',
+  name: "CVPR",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: 'rgb(151, 129, 225)',
+    width: 3
+  }
+};
+
+var ICML = {
+  x: [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [406, 540, 579, 514, 546, 744, 500, 800, 1200, 3103],
+  type: 'scatter',
+  name: "ICML",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#2e9b3f',
+    // color: 'rgb(0, 0, 0)',
+    width: 3
+  }
+};
+
+var ICRA = {
+  x: [2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [1000, 700, 1000, 1200, 1000, 1200, 1200, 1300, 1200, 1300, 1500, 2000],
+  type: 'scatter',
+  name: "ICRA",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: 'rgb(0, 0, 0)',
+    width: 3
+  }
+}
+
+var ACL = {
+  x: [2000, 2001, 2002, 2003, 2004, 2005, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [450, 573, 676, 574, 682, 696, 1075, 759, 799, 955, 1101, 973, 987, 1437, 745, 1649],
+  type: 'scatter',
+  name: "ACL",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: 'rgb(125, 125, 125)',
+    width: 3
+  }
+}
+
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+    zeroline: true,
+    zerolinecolor: '#dcdddc',
+    zerolinewidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+};
+
+var data = [AAAI, IJCAI, NIPS, CVPR, ICML, ICRA, ACL];
+var layout = {
+  width: 500,
+  height: 350,
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Proxima Nova, monospace',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>Large Conference Attendance</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Year</b>',
+    titlefont: {
+      size: 18,
+    },
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject({
+    title: '<b>Attendance</b>',
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
+    // tickcolor: 'rgb(248, 248, 248)'
+  },gridline_settings),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+</script>
+</body>
