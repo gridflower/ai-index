@@ -83,8 +83,9 @@ var layout = {
 
   /* yaxis */ 
   yaxis: extendObject({
-    title: '<b>BLEU</b>',
-    // tickformat: ',.0%',
+    title: '<b>BLEU Score</b>',
+    range: [0.1, 0.4],
+    nticks: 4,
     titlefont: {
       size: 18,
     },
