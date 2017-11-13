@@ -80,8 +80,10 @@ var layout = {
       size: 18,
     },
     type: "date",
-    range: ["2015-10-01", "2017-7-1"],
-    tick0: "2015-10-01",
+    // range: ["2015-10-01", "2017-7-1"],
+    // tick0: "2015-10-01",
+    tickvals: ["2015-10-01", "2016-05-01", "2016-12-01", "2017-07-01"],
+    ticktext: ["Oct<br>2015", "May<br>2016", "Dec<br>2016", "July<br>2017"],
     dtick: "M7",
   }, gridline_settings),
 
@@ -104,5 +106,9 @@ var layout = {
 }
 
 Plotly.newPlot('myDiv', data, layout)
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0]
+item.style.transform = "rotate(-90deg) translate(-218px, -160px)"
 </script>
 </body>

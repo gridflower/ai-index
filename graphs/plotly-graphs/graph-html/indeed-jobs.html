@@ -71,8 +71,11 @@ var gridline_settings = {
 };
 var data = [CA, UK, US];
 var layout = {
-  width: 500,
+  width: 600,
   height: 350,
+  margin: {
+    l: 150
+  },
 
   /* GRAPH BACKGROUND COLOR */
   plot_bgcolor: 'rgb(255,255,255)',
@@ -85,7 +88,7 @@ var layout = {
   },
 
   /* TITLE */
-  title: "<b>Job Growth</b>",
+  title: "<b>Share of Jobs Requiring AI Skills</b>",
   titlefont: {
     size: 20,
   },
@@ -102,20 +105,26 @@ var layout = {
 
   /* yaxis */ 
   yaxis: extendObject({
-    title: '<b>Growth</b>',
+    // title: '<b>Share within Country</b>',
+    title: '<b>Share of Job Market</b>',
     range: [0, 15],
     titlefont: {
-      size: 18,
+      size: 14,
     },
     ticks: 'outside',
     ticklen: 8,
     tickwidth: 2,
     tickcolor: '#dcdddc',
-    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
-    // tickcolor: 'rgb(248, 248, 248)'
+
+    tickvals: [1, 5, 10, 15],
+    ticktext: ["(2013 Share) 1x", "5x", "10x", "15x"],
   },gridline_settings),
 }
 
 Plotly.newPlot('myDiv', data, layout)
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0]
+item.style.transform = "rotate(-90deg) translate(-275px, -110px)"
 </script>
 </body>

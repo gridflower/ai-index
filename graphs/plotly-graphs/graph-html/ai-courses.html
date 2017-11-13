@@ -105,6 +105,9 @@ var data = [stanford, UCB, GT, UIUC, UW];
 var layout = {
   width: 500,
   height: 350,
+  margin: {
+    l: 100
+  },
 
   /* GRAPH BACKGROUND COLOR */
   plot_bgcolor: 'rgb(255,255,255)',
@@ -124,7 +127,7 @@ var layout = {
 
   /* xaxis */ 
   xaxis: extendObject({
-    title: '<b>Year</b>',
+    title: '<b>Academic Year</b>',
     titlefont: {
       size: 18,
     },
@@ -150,5 +153,9 @@ var layout = {
 }
 
 Plotly.newPlot('myDiv', data, layout)
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0]
+item.style.transform = "rotate(-90deg) translate(-240px, -150px)";
 </script>
 </body>

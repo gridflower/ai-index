@@ -55,7 +55,7 @@ var gridline_settings = {
 var data = [engToGerm, germToEng];
 var layout = {
   width: 500,
-  height: 350,
+  height: 400,
 
   /* GRAPH BACKGROUND COLOR */
   plot_bgcolor: 'rgb(255,255,255)',
@@ -84,8 +84,7 @@ var layout = {
   /* yaxis */ 
   yaxis: extendObject({
     title: '<b>BLEU Score</b>',
-    range: [0.1, 0.4],
-    nticks: 4,
+    range: [0.1, .6],
     titlefont: {
       size: 18,
     },

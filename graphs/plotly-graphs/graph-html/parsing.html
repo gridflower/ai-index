@@ -54,8 +54,12 @@ var gridline_settings = {
 }
 var data = [lessThan40, allLengths];
 var layout = {
-  width: 600,
-  height: 350,
+  // width: 620,
+  width: 620,
+  height: 400,
+  // margin: {
+  //   l: 100
+  // },
 
   /* GRAPH BACKGROUND COLOR */
   plot_bgcolor: 'rgb(255,255,255)',
@@ -68,7 +72,7 @@ var layout = {
   },
 
   /* TITLE */
-  title: "<b>Constituency Parsing, Penn Treebank</b>",
+  title: "<b>Constituency Parsing, Penn Treebank WSJ</b>",
   titlefont: {
     size: 20,
   },
@@ -85,7 +89,8 @@ var layout = {
   /* yaxis */ 
   yaxis: extendObject({
     title: '<b>F1 Score</b>',
-    range: [.84, .95],
+    range: [.84, 1],
+    // range: [.84, .95],
     tickformat: ',.0%',
     titlefont: {
       size: 18,
@@ -101,5 +106,10 @@ var layout = {
 }
 
 Plotly.newPlot('myDiv', data, layout)
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0]
+item.style.transform = "rotate(-90deg) translate(-235px, -185px)"
+
 </script>
 </body>

@@ -68,7 +68,7 @@ var layout = {
   },
 
   /* TITLE */
-  title: "<b>Question Answering, SQuAD 1.1</b>",
+  title: "<b>Question Answering, SQuAD v1.1</b>",
   titlefont: {
     size: 20,
   },
@@ -82,13 +82,15 @@ var layout = {
     type: "date",
     range: ["2016-08-1", "2017-11-1"],
     tick0: "2016-08-1",
+    tickvals: ["2016-08-1", "2017-01-01", "2017-06-01", "2017-11-1"],
+    ticktext: ["Aug<br>2015", "Jan<br>2017", "Jun<br>2016", "Nov<br>2017"],
     dtick: "M5",
   }, gridline_settings),
 
   /* yaxis */ 
   yaxis: extendObject({
     title: '<b>Accuracy</b>',
-    range: [.5, .9],
+    range: [.6, .9],
     tickformat: ',.0%',
     titlefont: {
       size: 18,
@@ -104,5 +106,9 @@ var layout = {
 }
 
 Plotly.newPlot('myDiv', data, layout)
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0]
+item.style.transform = "rotate(-90deg) translate(-218px, -160px)"
 </script>
 </body>

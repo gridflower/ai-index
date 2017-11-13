@@ -15,7 +15,7 @@ var ai = {
   x: [1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
   y: [1, 1.237244898, 1.287755102, 1.348469388, 1.221428571, 1.705102041, 1.981122449, 2.397959184, 2.739285714, 2.704591837, 3.395918367, 4.216836735, 5.524489796, 5.31122449, 5.489795918, 6.332653061, 6.970918367, 6.519897959, 7.855612245, 9.41377551, 9.52244898],
   type: 'scatter',
-  name: "AI CS papers",
+  name: "AI papers within CS",
 
   /* Connects points with a bolded line. */
   mode: 'lines',
@@ -29,7 +29,7 @@ var cs = {
   x: [1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
   y: [1, 1.138075528, 1.147886964, 1.051305636, 1.250123495, 1.614049432, 1.750438619, 2.017255183, 1.847565026, 2.44078219, 3.06942954, 3.693614049, 4.436114944, 5.129609757, 5.340913349, 5.379460712, 5.395506498, 5.336569745, 5.421534059, 5.650178003, 6.022757082],
   type: "scatter",
-  name: "CS papers",
+  name: "Papers in field of CS",
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
@@ -42,7 +42,7 @@ var scopus = {
   x: [1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
   y: [1, 1.024275719, 1.029228491, 1.035132088, 1.099158181, 1.190061175, 1.246332113, 1.310328493, 1.410946868, 1.607285178, 1.690935594, 1.793318086, 1.87711622, 1.970674728, 2.084335519, 2.215586548, 2.321394553, 2.405020349, 2.459733464, 2.416144138, 2.42991665],
   type: "scatter",
-  name: "All papers",
+  name: "Papers from all fields",
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
@@ -67,8 +67,11 @@ var gridline_settings = {
 };
 var data = [ai, cs, scopus];
 var layout = {
-  width: 500,
+  width: 600,
   height: 350,
+  margin: {
+    l: 150,
+  },
 
   /* GRAPH BACKGROUND COLOR */
   plot_bgcolor: 'rgb(255,255,255)',
@@ -81,7 +84,7 @@ var layout = {
   },
 
   /* TITLE */
-  title: "<b>Relative Paper Growth since 1996</b>",
+  title: "<b>Growth of Annually Published Papers</b>",
   titlefont: {
     size: 20,
   },
@@ -98,7 +101,7 @@ var layout = {
 
   /* yaxis */ 
   yaxis: extendObject({
-    title: '<b>Growth</b>',
+    title: '<b>Papers</b>',
     range: [0, 10],
     titlefont: {
       size: 18,
@@ -108,11 +111,21 @@ var layout = {
     ticklen: 8,
     tickwidth: 2,
     tickcolor: '#dcdddc',
-    /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
-    // tickcolor: 'rgb(248, 248, 248)'
+
+    tickvals: [1, 2, 4, 8, 6, 10],
+    ticktext: ["(1996 Value) 1x", "2x", "4x", "8x", "6x", "10x"],
   },gridline_settings),
 }
 
-Plotly.newPlot('myDiv', data, layout)
+Plotly.newPlot('myDiv', data, layout);
+
+/* Adjust X Axis */
+item = document.getElementsByClassName("xtitle")[0]
+// item.style.transform = "rotate(-90deg) translate(-275px, -120px)"
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0]
+item.style.transform = "rotate(-90deg) translate(-275px, -120px)"
+
 </script>
 </body>
