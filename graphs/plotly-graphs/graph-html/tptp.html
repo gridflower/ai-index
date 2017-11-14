@@ -43,6 +43,9 @@ var data = [tptp];
 var layout = {
   width: 500,
   height: 350,
+  margin: {
+    l: 100,
+  },
 
   /* GRAPH BACKGROUND COLOR */
   plot_bgcolor: 'rgb(255,255,255)',
@@ -87,5 +90,13 @@ var layout = {
 }
 
 Plotly.newPlot('myDiv', data, layout)
+
+/* Adjust X Axis */
+item = document.getElementsByClassName("xtitle")[0];
+item.style.transform = "translate(0px,-10px)";
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0]
+item.style.transform = "rotate(-90deg) translate(-240px, -150px)";
 </script>
 </body>
