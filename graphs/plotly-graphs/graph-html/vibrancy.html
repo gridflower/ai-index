@@ -1,0 +1,108 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>body{margin: 0;}</style>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var virbancy = {
+  x: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [1, 0.9307536082, 0.8799513151, 1.136793132, 1.267896753, 1.236453202, 1.631521332, 2.002052545, 2.640797396, 2.424185464, 2.661077982, 3.100934808, 3.603592314, 3.677584767, 6.02609253, 6.646695762, 6.923940599],
+  type: 'scatter',
+  name: "Vibrancy",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#6AC7F5',
+    width: 3
+  }
+};
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+};
+var data = [virbancy];
+var layout = {
+  width: 500,
+  width: 480,
+  height: 350,
+    margin: {
+    l: 80,
+    r: 60
+  },
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Proxima Nova, monospace',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>AI Vibrancy Index</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Year</b>',
+    titlefont: {
+      size: 18,
+    },
+    // tick0: 1996,
+    // range: ["1996", "2017"],
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject({
+    title: '<b>Index Value</b>',
+    // range: [0, 8],
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+
+    tickvals: [1, 2, 4, 6, 8],
+    ticktext: ["1x", "2x", "4x", "6x", "8x"],
+  },gridline_settings),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+
+/* Adjust X Axis */
+item = document.getElementsByClassName("xtitle")[0];
+item.style.transform = "translate(0px,-10px)";
+
+/* Adjust Y Axis Title*/
+// item = document.getElementsByClassName("ytitle")[0]
+// item.style.transform = "rotate(-90deg) translate(-320px, -60px)"
+
+</script>
+</body>
