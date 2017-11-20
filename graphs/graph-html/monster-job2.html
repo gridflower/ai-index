@@ -1,0 +1,178 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+@font-face {
+font-family: 'Calibre';
+src: url('calibre-medium.ttf') format('truetype');
+font-weight: bold;
+font-style: normal;
+}
+@font-face {
+font-family: 'Calibre';
+src: url('calibre.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+body{margin: 0;}
+</style>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var ml = {
+  x: [2015, 2016, 2017],
+  y: [2273, 4972, 11691],
+  type: 'scatter',
+  name: "Machine Learning",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#65c6f0',
+    width: 3
+  }
+};
+
+var dl = {
+  x: [2015, 2016, 2017],
+  y: [227, 1071, 7164],
+  type: 'scatter',
+  name: "Deep Learning",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#9550d8',
+    width: 3
+  }
+};
+
+var nlp = {
+  x: [2015, 2016, 2017],
+  y: [1586, 1926, 4705],
+  type: 'scatter',
+  name: "NLP",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#e1c629',
+    width: 3
+  }
+};
+
+var cv = {
+  x: [2015, 2016, 2017],
+  y: [367, 949, 2859],
+  type: 'scatter',
+  name: "Computer Vision",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d86f98',
+    width: 3
+  }
+};
+
+var speech = {
+  x: [2015, 2016, 2017],
+  y: [175, 185, 1021],
+  type: 'scatter',
+  name: "Speech Recognition",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#72cc85',
+    width: 3
+  }
+};
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+    zeroline: true,
+    zerolinecolor: '#dcdddc',
+    zerolinewidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+};
+
+var data = [ml, dl, nlp, cv, speech];
+var layout = {
+  height: 350,
+  // width: 500,
+  width: 520,
+  margin: {
+    l: 100,
+  },
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Calibre',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>Job Openings, Skills Breakdown (Monster.com)</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject(gridline_settings, {
+    title: '<b>Year</b>',
+    titlefont: {
+      size: 18,
+    },
+    nticks: 3,
+  }),
+
+  /* yaxis */ 
+  yaxis: extendObject(gridline_settings, {
+    title: '<b>Job Listings</b>',
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+
+    range: [0, 15000]
+  }),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+
+/* Adjust X Axis */
+item = document.getElementsByClassName("xtitle")[0];
+item.style.transform = "translate(0px,-10px)";
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0];
+item.style.transform = "rotate(-90deg) translate(-230px, -150px)";
+</script>
+</body>

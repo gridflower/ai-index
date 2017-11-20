@@ -35,7 +35,7 @@ var CA = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#6AC7F5',
+    color: '#9550d8',
     width: 3
   }
 };
@@ -48,7 +48,7 @@ var UK = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#d26a69',
+    color: '#e1c629',
     width: 3
   }
 };
@@ -61,7 +61,7 @@ var US = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#ec9832',
+    color: '#65c6f0',
     width: 3
   } 
 };
@@ -86,10 +86,10 @@ var gridline_settings = {
 };
 var data = [CA, UK, US];
 var layout = {
-  width: 600,
+  width: 570,
   height: 350,
   margin: {
-    l: 150
+    l: 120
   },
 
   /* GRAPH BACKGROUND COLOR */
@@ -103,7 +103,7 @@ var layout = {
   },
 
   /* TITLE */
-  title: "<b>Share of Jobs Requiring AI Skills</b>",
+  title: "<b>Share of Jobs Requiring AI Skills (Indeed.com)</b>",
   titlefont: {
     size: 20,
   },
@@ -114,6 +114,7 @@ var layout = {
     titlefont: {
       size: 18,
     },
+    range: ["2013-01-01", "2017-10-08"],
     // tick0: ,
     // dtick: "",
   }, gridline_settings),
@@ -144,6 +145,6 @@ item.style.transform = "translate(0px,-10px)";
 
 /* Adjust Y Axis Title*/
 item = document.getElementsByClassName("ytitle")[0]
-item.style.transform = "rotate(-90deg) translate(-275px, -110px)"
+item.style.transform = "rotate(-90deg) translate(-255px, -130px)"
 </script>
 </body>

@@ -1,0 +1,120 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+@font-face {
+font-family: 'Calibre';
+src: url('calibre-medium.ttf') format('truetype');
+font-weight: bold;
+font-style: normal;
+}
+@font-face {
+font-family: 'Calibre';
+src: url('calibre.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+body{margin: 0;}
+</style>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var ai = {
+  x: [2015, 2016, 2017],
+  y: [7010, 11096, 31273],
+  type: 'scatter',
+  name: "Artificial Intelligence",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#65c6f0',
+    width: 3
+  }
+};
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+    zeroline: true,
+    zerolinecolor: '#dcdddc',
+    zerolinewidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+};
+
+var data = [ai];
+var layout = {
+  height: 350,
+  // width: 500,
+  width: 520,
+  margin: {
+    l: 100,
+  },
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Calibre',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>Job Openings Requiring AI Skills (Monster.com)</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject(gridline_settings, {
+    title: '<b>Year</b>',
+    titlefont: {
+      size: 18,
+    },
+    nticks: 3,
+  }),
+
+  /* yaxis */ 
+  yaxis: extendObject(gridline_settings, {
+    title: '<b>Job Listings</b>',
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+  }),
+}
+
+Plotly.newPlot('myDiv', data, layout)
+
+/* Adjust X Axis */
+item = document.getElementsByClassName("xtitle")[0];
+item.style.transform = "translate(0px,-10px)";
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0];
+item.style.transform = "rotate(-90deg) translate(-230px, -150px)";
+</script>
+</body>
