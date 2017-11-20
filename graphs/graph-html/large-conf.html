@@ -1,7 +1,21 @@
 <head>
   <!-- Plotly.js -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<style>body{margin: 0;}</style>
+<style>
+@font-face {
+font-family: 'Calibre';
+src: url('calibre-medium.ttf') format('truetype');
+font-weight: bold;
+font-style: normal;
+}
+@font-face {
+font-family: 'Calibre';
+src: url('calibre.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+body{margin: 0;}
+</style>
 </head>
 <body>
 <!-- Plotly chart will be drawn inside this DIV -->
@@ -21,7 +35,7 @@ var AAAI = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#6AC7F5',
+    color: '#9550d8',
     width: 3
   }
 };
@@ -35,7 +49,7 @@ var IJCAI = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#d26a69',
+    color: '#65c6f0',
     width: 3
   }
 };
@@ -49,7 +63,7 @@ var NIPS = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#ec9832',
+    color: '#e1c629',
     width: 3
   }
 };
@@ -64,7 +78,7 @@ var CVPR = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: 'rgb(151, 129, 225)',
+    color: '#d86f98',
     width: 3
   }
 };
@@ -78,8 +92,7 @@ var ICML = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#2e9b3f',
-    // color: 'rgb(0, 0, 0)',
+    color: '#72cc85',
     width: 3
   }
 };
@@ -93,7 +106,7 @@ var ICRA = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: 'rgb(0, 0, 0)',
+    color: '#7b7e99',
     width: 3
   }
 }
@@ -107,7 +120,7 @@ var ACL = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: 'rgb(125, 125, 125)',
+    color: '#353b3d',
     width: 3
   }
 }
@@ -147,7 +160,7 @@ var layout = {
   paper_bgcolor: "rgb(248, 248, 248)",
 
   font: {
-      family: 'Proxima Nova, monospace',
+      family: 'Calibre',
       color: '#444444'
   },
 

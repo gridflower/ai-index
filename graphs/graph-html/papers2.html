@@ -1,7 +1,21 @@
 <head>
   <!-- Plotly.js -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<style>body{margin: 0;}</style>
+<style>
+@font-face {
+font-family: 'Calibre';
+src: url('calibre-medium.ttf') format('truetype');
+font-weight: bold;
+font-style: normal;
+}
+@font-face {
+font-family: 'Calibre';
+src: url('calibre.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+body{margin: 0;}
+</style>
 </head>
 <body>
 <!-- Plotly chart will be drawn inside this DIV -->
@@ -21,7 +35,7 @@ var ai = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#9650d8',
+    color: '#9550d8',
     width: 3
   }
 };
@@ -34,7 +48,7 @@ var cs = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#76a6e1',
+    color: '#65c6f0',
     width: 3
   }
 };
@@ -47,7 +61,7 @@ var scopus = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#e5cf2c',
+    color: '#e1c629',
     width: 3
   } 
 };
@@ -80,7 +94,8 @@ var layout = {
   paper_bgcolor: "rgb(248, 248, 248)",
 
   font: {
-      family: 'Proxima Nova, monospace',
+      // family: 'Calibre',
+      family: 'Calibre',
       color: '#444444'
   },
 
