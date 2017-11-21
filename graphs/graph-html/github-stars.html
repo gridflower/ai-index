@@ -54,6 +54,21 @@ var scikit = {
   }
 };
 
+var caffe = {
+  x: ['2015-01-01', '2015-02-01', '2015-03-01', '2015-04-01', '2015-05-01', '2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [373, 658, 1148, 1541, 3183, 3669, 4902, 5359, 5802, 6322, 6996, 7519, 8090, 8550, 9336, 9969, 10622, 11196, 11825, 12534, 13156, 14051, 14865, 15620, 16454, 17122, 17857, 18627, 19330, 20038, 20715, 21386, 22022, 22616],
+  type: 'scatter',
+  name: "caffe",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#c58846',
+    width: 3
+  }
+}
+
+
 var keras = {
   x: ['2015-03-01', '2015-04-01', '2015-05-01', '2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
   y: [556, 784, 1962, 2196, 2413, 2702, 2929, 3183, 3474, 3880, 4326, 4774, 5366, 6159, 6706, 7142, 7682, 8373, 8969, 9822, 10537, 11330, 12410, 13392, 14971, 16115, 17139, 18266, 19444, 20500, 21450, 22643],
@@ -156,7 +171,7 @@ var gridline_settings = {
     zerolinecolor: '#dcdddc',
     zerolinewidth: 2,
 };
-var data = [tf, scikit, keras, cntk, mxnet, pytorch, theano, caffe2];
+var data = [tf, scikit, caffe, keras, cntk, mxnet, pytorch, theano, caffe2];
 // var data = [scikit, keras, cntk, mxnet, pytorch, theano, caffe2];
 var layout = {
   width: 500,
@@ -173,38 +188,51 @@ var layout = {
   },
 
   /* TITLE */
-  title: "<b>Github Stars of AI Software Libraries</b>",
+  title: "<b>GitHub Stars of AI Software Libraries</b>",
   titlefont: {
     size: 20,
   },
 
   /* xaxis */ 
   xaxis: extendObject({
-    title: '<b>Month</b>',
+    title: '<b>Date</b>',
     titlefont: {
       size: 18,
     },
     range: ["2015-01-01", "2018-01-01"],
-    // tickvals: ["2016-01-01", "2016-07-01", "2017-01-01", "2017-07-01", "2018-01-01"],
-    // ticktext: ["Jan<br>2016", "July<br>2016", "Jan<br>2016", "July<br>2017", "Jan<br>2017"]
+    // tickvals: ["2015-01-01", "2015-07-01", "2016-01-01", "2016-07-01", "2017-01-01", "2017-07-01", "2018-01-01"],
+    // ticktext: ["Jan<br>2015", "July<br>2015", "Jan<br>2016", "July<br>2016", "Jan<br>2017", "July<br>2017", "Jan<br>2018"],
+
+    tickvals: ["2015-01-01", "2015-07-01", "2016-01-01", "2016-07-01", "2017-01-01", "2017-07-01", "2018-01-01"],
+    ticktext: ["2015", "", "2016", "", "2017", "", "2018"],
   }, gridline_settings),
 
   /* yaxis */ 
-  yaxis: extendObject({
+  yaxis: extendObject(gridline_settings, {
     title: '<b>Stars</b>',
     titlefont: {
       size: 18,
     },
-    range: [-1200, 25000],
 
     ticks: 'outside',
     ticklen: 8,
     tickwidth: 2,
     tickcolor: '#dcdddc',
-  },gridline_settings),
+
+    nticks: 4,
+    range: [-1200, 30000],
+  }),
 }
 
 Plotly.newPlot('myDiv', data, layout);
+
+/* Make scrollbar invisible */
+item = document.getElementsByClassName("scrollbar")[0];
+item.style.fillOpacity = "0";
+
+/* Adjust X Axis */
+item = document.getElementsByClassName("xtitle")[0];
+item.style.transform = "translate(0px,-10px)";
 
 /* Adjust Y Axis Title*/
 item = document.getElementsByClassName("ytitle")[0]
