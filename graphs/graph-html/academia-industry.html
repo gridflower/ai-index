@@ -14,17 +14,43 @@ src: url('calibre.ttf') format('truetype');
 font-weight: normal;
 font-style: normal;
 }
+@font-face {
+font-family: 'Calibre2';
+src: url('calibre-bold.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
 body{margin: 0;}
 </style>
 </head>
 <body>
 <!-- Plotly chart will be drawn inside this DIV -->
-<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<div id="myDiv" style="width: 100%; height: 350px;"></div>
+<div style="background-color: #f1f2f1; font-family: Calibre; width: 500px; height: 30px; display: flex; align-items: center;">
+  <div style="width: 500px; height: 30px; display: flex; align-items: center; opacity: .5;">
+    <div style="margin-left: auto; margin-right: 7px; font-family: Calibre2; margin-top: 4px; font-size: 8px; letter-spacing: .4px;">AIINDEX.ORG</div>
+    <img style="padding-right: 15px; height: 15px; width: auto;" src="index_logo_square_alpha.png"/>
+  </div>
+</div>
 <script>
 
 function extendObject(obj1, obj2) {
     return Object.assign({}, obj1, obj2);
 }
+
+var papers = {
+  x: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  y: [1, 1.395989975, 1.621971596, 1.963241437, 2.242690058, 2.214285714, 2.780284043, 3.452380952, 4.522974102, 4.348370927, 4.494569758, 5.184628237, 5.707184628, 5.337928154, 6.431495405, 7.707184628, 7.796157059],
+  type: 'scatter',
+  name: "Publishing",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#9550d8',
+    width: 3
+  }
+};
 
 var enrollment = {
   x: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
@@ -35,7 +61,7 @@ var enrollment = {
   /* Connects points with a bolded line. */
   mode: 'lines',
   line: {
-    color: '#9550d8',
+    color: '#d86f98',
     width: 3
   }
 };
@@ -71,7 +97,7 @@ var gridline_settings = {
     zerolinewidth: 2,
     zerolinecolor: '#dcdddc',
 };
-var data = [enrollment, vc];
+var data = [papers, enrollment, vc];
 var layout = {
   width: 500,
   height: 350,
@@ -87,7 +113,7 @@ var layout = {
   },
 
   /* TITLE */
-  title: "<b>Workforce Preparedness Index Components</b>",
+  title: "<b>Academia-Industry Dynamics</b>",
   titlefont: {
     size: 20,
   },
@@ -112,7 +138,6 @@ var layout = {
     ticklen: 8,
     tickwidth: 2,
     tickcolor: '#dcdddc',
-
     tickvals: [1, 2, 4, 6, 8],
     ticktext: ["1x", "2x", "4x", "6x", "8x"],
   },gridline_settings),

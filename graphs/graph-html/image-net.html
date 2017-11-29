@@ -14,12 +14,24 @@ src: url('calibre.ttf') format('truetype');
 font-weight: normal;
 font-style: normal;
 }
+@font-face {
+font-family: 'Calibre2';
+src: url('calibre-bold.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
 body{margin: 0;}
 </style>
 </head>
 <body>
 <!-- Plotly chart will be drawn inside this DIV -->
-<div id="myDiv" style="width: 100%; height: 500px;"></div>
+<div id="myDiv" style="width: 100%; height: 350px;"></div>
+<div style="background-color: #f1f2f1; font-family: Calibre; width: 500px; height: 30px; display: flex; align-items: center;">
+  <div style="width: 500px; height: 30px; display: flex; align-items: center; opacity: .5;">
+  <div style="padding-left: 15px; font-size: 12px; margin-top: 4px;">Source: <b>image-net.org</b></div>
+<div style="margin-left: auto; margin-right: 7px; font-family: Calibre2; margin-top: 4px; font-size: 8px; letter-spacing: .4px;">AIINDEX.ORG</div>
+  <img style="padding-right: 15px; height: 15px; width: auto;" src="index_logo_square_alpha.png"/>
+</div>
 <script>
 
 function extendObject(obj1, obj2) {

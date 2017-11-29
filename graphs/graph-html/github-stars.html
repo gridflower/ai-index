@@ -1,0 +1,253 @@
+<head>
+  <!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+@font-face {
+font-family: 'Calibre';
+src: url('calibre-medium.ttf') format('truetype');
+font-weight: bold;
+font-style: normal;
+}
+@font-face {
+font-family: 'Calibre';
+src: url('calibre.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+@font-face {
+font-family: 'Calibre2';
+src: url('calibre-bold.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+body{margin: 0;}
+</style>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width: 100%; height: 350px;"></div>
+<div style="background-color: #f1f2f1; font-family: Calibre; width: 500px; height: 30px; display: flex; align-items: center;">
+  <div style="width: 500px; height: 30px; display: flex; align-items: center; opacity: .5;">
+  <div style="padding-left: 15px; font-size: 12px; margin-top: 4px;">Source: <b>GitHub Archive</b></div>
+<div style="margin-left: auto; margin-right: 7px; font-family: Calibre2; margin-top: 4px; font-size: 8px; letter-spacing: .4px;">AIINDEX.ORG</div>
+  <img style="padding-right: 15px; height: 15px; width: auto;" src="index_logo_square_alpha.png"/>
+</div>
+<script>
+
+function extendObject(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+var tf = {
+  x: ['2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [14099, 15999, 18161, 19653, 21387, 23677, 26457, 28643, 30640, 32678, 35038, 38068, 40907, 44251, 48107, 53271, 57681, 61312, 65141, 68661, 72144, 75732, 79126, 83444],
+  type: 'scatter',
+  name: "tensorflow",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#e1c629',
+    width: 3
+  }
+};
+
+var scikit = {
+  x: ['2015-02-01', '2015-03-01', '2015-04-01', '2015-05-01', '2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [4782, 5124, 5563, 5963, 6339, 6821, 7202, 7585, 8005, 8440, 9015, 9652, 10067, 10689, 11385, 11963, 12504, 13051, 13570, 14244, 15029, 15718, 16345, 16984, 17685, 18535, 19372, 20047, 20783, 21532, 22327, 23022, 24134],
+  type: 'scatter',
+  name: "scikit-learn",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#9550d8',
+    width: 3
+  }
+};
+
+var caffe = {
+  x: ['2015-01-01', '2015-02-01', '2015-03-01', '2015-04-01', '2015-05-01', '2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [373, 658, 1148, 1541, 3183, 3669, 4902, 5359, 5802, 6322, 6996, 7519, 8090, 8550, 9336, 9969, 10622, 11196, 11825, 12534, 13156, 14051, 14865, 15620, 16454, 17122, 17857, 18627, 19330, 20038, 20715, 21386, 22022, 22616],
+  type: 'scatter',
+  name: "caffe",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#c58846',
+    width: 3
+  }
+}
+
+
+var keras = {
+  x: ['2015-03-01', '2015-04-01', '2015-05-01', '2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [556, 784, 1962, 2196, 2413, 2702, 2929, 3183, 3474, 3880, 4326, 4774, 5366, 6159, 6706, 7142, 7682, 8373, 8969, 9822, 10537, 11330, 12410, 13392, 14971, 16115, 17139, 18266, 19444, 20500, 21450, 22643],
+  type: 'scatter',
+  name: "keras",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d86f98',
+    width: 3
+  }
+}
+
+var cntk = {
+  x: ['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [3987, 4679, 5186, 5480, 5724, 5946, 6157, 6388, 6719, 8476, 9132, 9555, 9923, 10351, 10738, 11229, 11579, 12390, 12731, 13117, 13482, 13877],
+  type: 'scatter',
+  name: "CNTK",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#65c6f0',
+    width: 3
+  }
+}
+
+var mxnet = {
+  x: ['2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [6, 10, 23, 337, 780, 1600, 2198, 2613, 2877, 3235, 3693, 4068, 4441, 4837, 5177, 5602, 6046, 7149, 7889, 8420, 9210, 9711, 10167, 10640, 11079, 11524, 11899, 12408, 12940],
+  type: 'scatter',
+  name: "mxnet",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#d26a69',
+    width: 3
+  }
+}
+
+var pytorch = {
+  x: ['2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [2765, 3522, 4145, 4733, 5384, 5830, 6262, 7249, 7971, 9016],
+  type: 'scatter',
+  name: "pytorch",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#72cc85',
+    width: 3
+  }
+}
+
+var theano = {
+  x: ['2015-01-01', '2015-02-01', '2015-03-01', '2015-04-01', '2015-05-01', '2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [1008, 1095, 1244, 1341, 1464, 1617, 1725, 1906, 2042, 2179, 2480, 2680, 2903, 3087, 3408, 3710, 3943, 4149, 4346, 4560, 4811, 5073, 5343, 5606, 5854, 6100, 6359, 6587, 6792, 7003, 7182, 7360, 7510, 7801],
+  type: 'scatter',
+  name: "theano",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#7b7e99',
+    width: 3
+  }
+}
+
+var caffe2 = {
+  x: ['2015-08-01', '2015-09-01', '2015-10-01', '2015-11-01', '2015-12-01', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01', '2017-10-01'],
+  y: [13, 14, 14, 15, 15, 15, 15, 15, 16, 16, 17, 41, 64, 88, 110, 198, 256, 294, 344, 405, 3951, 4546, 4832, 5062, 5323, 5566, 6018],
+  type: 'scatter',
+  name: "caffe2",
+
+  /* Connects points with a bolded line. */
+  mode: 'lines',
+  line: {
+    color: '#353b3d',
+    width: 3
+  }
+}
+
+/* GRID SETTINGS */
+var gridline_settings = {
+
+    /* Control internals grid lines */
+    showgrid: true,
+    gridcolor: '#dcdddc',
+    gridwidth: 2,
+
+     /* Controls border around the graph */
+    showline: true,
+    mirror: true,
+    linecolor: '#dcdddc',
+    linewidth: 2,
+
+    zeroline: true,
+    zerolinecolor: '#dcdddc',
+    zerolinewidth: 2,
+};
+var data = [tf, scikit, caffe, keras, cntk, mxnet, pytorch, theano, caffe2];
+// var data = [scikit, keras, cntk, mxnet, pytorch, theano, caffe2];
+var layout = {
+  width: 500,
+  height: 350,
+
+  /* GRAPH BACKGROUND COLOR */
+  plot_bgcolor: 'rgb(255,255,255)',
+  /* BCAKGROUND COLOR FOR IMAGE */
+  paper_bgcolor: "rgb(248, 248, 248)",
+
+  font: {
+      family: 'Calibre',
+      color: '#444444'
+  },
+
+  /* TITLE */
+  title: "<b>GitHub Stars of AI Software Libraries</b>",
+  titlefont: {
+    size: 20,
+  },
+
+  /* xaxis */ 
+  xaxis: extendObject({
+    title: '<b>Date</b>',
+    titlefont: {
+      size: 18,
+    },
+    range: ["2015-01-01", "2018-01-01"],
+    // tickvals: ["2015-01-01", "2015-07-01", "2016-01-01", "2016-07-01", "2017-01-01", "2017-07-01", "2018-01-01"],
+    // ticktext: ["Jan<br>2015", "July<br>2015", "Jan<br>2016", "July<br>2016", "Jan<br>2017", "July<br>2017", "Jan<br>2018"],
+
+    tickvals: ["2015-01-01", "2015-07-01", "2016-01-01", "2016-07-01", "2017-01-01", "2017-07-01", "2018-01-01"],
+    ticktext: ["2015", "", "2016", "", "2017", "", "2018"],
+  }, gridline_settings),
+
+  /* yaxis */ 
+  yaxis: extendObject(gridline_settings, {
+    title: '<b>Stars</b>',
+    titlefont: {
+      size: 18,
+    },
+
+    ticks: 'outside',
+    ticklen: 8,
+    tickwidth: 2,
+    tickcolor: '#dcdddc',
+
+    nticks: 4,
+    range: [-1200, 30000],
+  }),
+}
+
+Plotly.newPlot('myDiv', data, layout);
+
+/* Make scrollbar invisible */
+item = document.getElementsByClassName("scrollbar")[0];
+item.style.fillOpacity = "0";
+
+/* Adjust X Axis */
+item = document.getElementsByClassName("xtitle")[0];
+item.style.transform = "translate(0px,-10px)";
+
+/* Adjust Y Axis Title*/
+item = document.getElementsByClassName("ytitle")[0]
+item.style.transform = "rotate(-90deg) translate(-220px, -160px)"
+</script>
+</body>
