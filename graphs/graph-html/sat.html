@@ -38,11 +38,11 @@ function extendObject(obj1, obj2) {
     return Object.assign({}, obj1, obj2);
 }
 
-var sat = {
+var avg = {
   x: [2007, 2009, 2011, 2013, 2014],
   y: [0.4870, 0.6317, 0.6573, 0.7068, 0.7236],
   type: 'scatter',
-  name: "Average Problems Solved",
+  name: "Average of systems",
 
   /* Connects points with a bolded line. */
   mode: 'lines',
@@ -51,6 +51,19 @@ var sat = {
     width: 3
   }
 };
+
+var best = {
+  x: [2007, 2009, 2011, 2013, 2014],
+  y: [0.5112, 0.7240, 0.7788, 0.8318, 0.8290],
+  type: 'scatter',
+  name: 'Best system',
+
+  mode: 'lines',
+  line: {
+    color: '#65c6f0',
+    width: 3
+  }
+}
 
 /* GRID SETTINGS */
 var gridline_settings = {
@@ -65,8 +78,12 @@ var gridline_settings = {
     mirror: true,
     linecolor: '#dcdddc',
     linewidth: 2,
+
+    zeroline: true,
+    zerolinecolor: '#dcdddc',
+    zerolinewidth: 2,
 }
-var data = [sat];
+var data = [best, avg];
 var layout = {
   width: 500,
   height: 350,
@@ -97,20 +114,23 @@ var layout = {
     titlefont: {
       size: 18,
     },
+    tickvals: [2007, 2008, 2010, 2012, 2014],
+    ticktext: ["2007", "2008", "2010", "2012", "2014"],
   }, gridline_settings),
 
   /* yaxis */ 
   yaxis: extendObject({
-    title: '<b>Percent Solved</b>',
+    title: '<b>Percent of Problems Solved</b>',
     tickformat: ',.0%',
     titlefont: {
-      size: 18,
+      size: 14,
     },
 
     ticks: 'outside',
     ticklen: 8,
     tickwidth: 2,
-    tickcolor: '#dcdddc'
+    tickcolor: '#dcdddc',
+    range: [.4, 1],
     /* HACK FOR CREATING AN OFFSET BETWEEN GRAPH AND AXIS LABELS*/
     // tickcolor: 'rgb(248, 248, 248)'
   },gridline_settings),
